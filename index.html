@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NATACION</title>
+    <link rel="stylesheet" href="./CSS/main.css">
+    
+    <!-- Metaetiquetas para PWA -->
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#007bff">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+</head>
+
+
+<body>
+    
+    <div class="container">
+        <h1>Entrenamiento</h1>
+        <form id="training-form">
+            <label for="date">Fecha:</label>
+            <input type="date" id="date" required>
+            <label for="distance">Distancia (metros):</label>
+            <input type="number" id="distance" required>
+            <label for="feeling">Cómo te sentiste hoy:</label>
+            <select id="feeling" required>
+                <option value="😓">😓 Cansado</option>
+                <option value="😊">😊 Bien</option>
+                <option value="😄">😄 Muy bien</option>
+            </select>
+            <button type="submit">Agregar Entrenamiento</button>
+        </form>
+        <h2>Historial de Entrenamientos</h2>
+        <details>
+            <summary>Ver Historial</summary>
+            <ul id="training-list"></ul>
+        </details>
+        <h2>Días de Entrenamiento</h2>
+        <p id="weekly-training-days">Días entrenados esta semana: 0 días</p>
+        <p id="monthly-training-days">Promedio de días entrenados por semana este mes: 0 días</p>
+        <h2>Estadísticas</h2>
+        <p id="daily-average">Promedio Diario: 0 metros</p>
+        <p id="weekly-average">Promedio Semanal: 0 metros</p>
+        <p id="monthly-average">Promedio Mensual: 0 metros</p>
+        <h2>Estadísticas Mensuales</h2>
+        <ul id="monthly-stats"></ul>
+
+    </div>
+    <script src="./js/mai.js"></script>
+
+    <!-- Registro del Service Worker -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/service-worker.js')
+                    .then(registration => {
+                        console.log('Service Worker registrado con éxito:', registration);
+                    })
+                    .catch(error => {
+                        console.log('Registro de Service Worker fallido:', error);
+                    });
+            });
+        }
+    </script>
+</body>
+
+</html>
